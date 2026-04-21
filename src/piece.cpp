@@ -184,6 +184,14 @@ namespace {
       p->betza = "mafsmafW"; // for compatibility with XBoard/Winboard
       return p;
   }
+
+  // Flanger: zig-zag slider (horizontal or vertical); movement implemented in bitboard.cpp
+  PieceInfo* flanger_piece() {
+      PieceInfo* p = new PieceInfo();
+      p->name = "flanger";
+      p->betza = "";
+      return p;
+  }
 }
 
 void PieceMap::init(const Variant* v) {
@@ -224,6 +232,7 @@ void PieceMap::init(const Variant* v) {
   add(WAZIR, from_betza("W", "wazir"));
   add(COMMONER, from_betza("K", "commoner"));
   add(CENTAUR, from_betza("KN", "centaur"));
+  add(FLANGER, flanger_piece());
   add(KING, from_betza("K", "king"));
   // Add custom pieces
   for (PieceType pt = CUSTOM_PIECES; pt <= CUSTOM_PIECES_END; ++pt)

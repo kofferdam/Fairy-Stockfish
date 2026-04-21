@@ -348,6 +348,49 @@ namespace {
         v->endgameEval = EG_EVAL_RK;
         return v;
     }
+    // Flang
+    // Pawn, king, knight, amazon, rook, flanger (zig-zag). Pawns move/capture forward and diagonals; no double move.
+    // Every piece except king frozen for one move after moving. No check; win by capturing king or king to back rank.
+    Variant* flang_variant() {
+        Variant* v = chess_variant_base()->init();
+        v->remove_piece(QUEEN);
+        v->remove_piece(BISHOP);
+        v->remove_piece(PAWN);
+        v->remove_piece(KING);
+        v->add_piece(COMMONER, 'k');
+        v->add_piece(CUSTOM_PIECE_1, 'p', "mfWcfWmfFcfF");
+        v->add_piece(AMAZON, 'a');
+        v->add_piece(FLANGER, 'f');
+        v->startFen = "kafnrp2/pppppp2/8/8/8/8/2PPPPPP/2PRNFAK w - - 0 1";
+        v->castling = false;
+        v->doubleStep = false;
+        v->doubleStepRegion[WHITE] = v->doubleStepRegion[BLACK] = Bitboard(0);
+        v->checking = false;
+        v->flagPiece[WHITE] = v->flagPiece[BLACK] = COMMONER;
+        v->flagRegion[WHITE] = Rank8BB;
+        v->flagRegion[BLACK] = Rank1BB;
+        v->flagMove = false;
+        v->extinctionValue = -VALUE_MATE;
+        v->extinctionPieceTypes = piece_set(COMMONER);
+        v->extinctionPieceCount = 0;
+        v->extinctionOpponentPieceCount = 1;
+        v->pieceFreezing = true;
+        v->pieceFreezingImmune = piece_set(COMMONER);
+        v->mainPromotionPawnType[WHITE] = v->mainPromotionPawnType[BLACK] = CUSTOM_PIECE_1;
+        v->promotionPawnTypes[WHITE] = v->promotionPawnTypes[BLACK] = piece_set(CUSTOM_PIECE_1);
+        v->promotionPieceTypes[WHITE] = v->promotionPieceTypes[BLACK] = piece_set(AMAZON);
+        v->promotionRegion[WHITE] = Rank8BB;
+        v->promotionRegion[BLACK] = Rank1BB;
+        v->nMoveRule = 0;
+        v->nMoveRuleTypes[WHITE] = v->nMoveRuleTypes[BLACK] = piece_set(CUSTOM_PIECE_1);
+        v->pieceValue[MG][COMMONER] = 1400;
+        v->pieceValue[EG][COMMONER] = 1800;
+        v->pieceValue[MG][FLANGER] = 1000;
+        v->pieceValue[EG][FLANGER] = 1100;
+        v->variantTemplate = "flang";
+        v->pieceToCharTable = "PN.R.............F...........AKpn.r.............f...........ak";
+        return v;
+    }
     // Knightmate
     // https://www.chessvariants.com/diffobjective.dir/knightmate.html
     Variant* knightmate_variant() {
@@ -1853,6 +1896,7 @@ void VariantMap::init() {
     add("newzealand", newzealand_variant());
     add("kingofthehill", kingofthehill_variant());
     add("racingkings", racingkings_variant());
+    add("flang", flang_variant());
     add("knightmate", knightmate_variant());
     add("misere", misere_variant());
     add("losers", losers_variant());

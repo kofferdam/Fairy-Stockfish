@@ -1,0 +1,682 @@
+xboard (4.9.1-2) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Reiner Herrmann ]
+  * Fix FTBFS with GCC 10 (Closes: #957972)
+
+  [ Markus Koschany ]
+  * Switch to debhelper-compat = 13.
+  * Remove obsolete menu and NEWS.Debian file.
+  * Use canonical VCS URI.
+  * Declare compliance with Debian Policy 4.5.0.
+
+ -- Markus Koschany <apo@debian.org>  Sun, 26 Jul 2020 19:52:57 +0200
+
+xboard (4.9.1-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Add Recommends on alsa-utils, since xboard executes aplay to play sounds.
+
+ -- Clint Adams <clint@debian.org>  Thu, 06 Oct 2016 15:33:20 -0400
+
+xboard (4.8.0-2) unstable; urgency=medium
+
+  * Build XBoard with the new gtk interface instead of the default xaw
+    interface.
+    - debian/rules: Build with --with-gtk
+    - debian/control: Add libgtk2.0-dev in Build-Depends
+
+ -- Vincent Legout <vlegout@debian.org>  Wed, 26 Nov 2014 17:46:45 -0500
+
+xboard (4.8.0-1) unstable; urgency=medium
+
+  [ Markus Koschany ]
+  * Update menu file. Add icon entries. (Closes: #726902)
+
+  [ Vincent Legout ]
+  * New upstream version
+    - Update patches
+  * Fix debian/copyright, XBoard follows both the GPL-3 and the DEC license
+    (Closes: #765619)
+  * Standards-Version 3.9.6
+  * Upload to unstable
+  * debian/rules:
+    - Remove configuration files already installed by hachu
+    - Remove get-orig-source target
+
+ -- Vincent Legout <vlegout@debian.org>  Sat, 25 Oct 2014 08:49:35 -0400
+
+xboard (4.8~git20140119-1) experimental; urgency=medium
+
+  * New upstream development release (Closes: #737347)
+    - Update patches
+  * debian/rules: Add get-orig-source target
+
+ -- Vincent Legout <vlegout@debian.org>  Tue, 11 Feb 2014 14:44:12 +0100
+
+xboard (4.7.3-1) unstable; urgency=medium
+
+  * New upstream release
+  * Import upstream gpg key to verify the tarball
+  * Standards-Version 3.9.5
+    - Remove dependency on `dpkg (>= 1.15.4) | install-info'
+  * debian/copyright: Update copyright years
+
+ -- Vincent Legout <vlegout@debian.org>  Tue, 07 Jan 2014 07:34:42 +0100
+
+xboard (4.7.2-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/patches/11_fix_manpages_warnings: Do not build the manpage at build
+    time because it overwrites the changes in this patch.
+
+ -- Vincent Legout <vlegout@debian.org>  Sat, 28 Sep 2013 18:52:27 +0200
+
+xboard (4.7.1-1) unstable; urgency=low
+
+  * New upstream release (Closes: #701559, #702528)
+    - Refresh patches
+  * Upload to unstable
+  * debian/control:
+    - Use anonscm.d.o instead of git.d.o in VCS fields
+    - Standards-Version 3.9.4
+  * debian/rules: Build with --with autoreconf. Add Build-Depends on
+    dh-autoreconf and autopoint.
+  * Add debian/patches/02_gettext.patch: Fix FTBFS with gettext 0.18.
+  * Run wrap-and-sort
+  * debian/copyright: Use copyright format 1.0
+
+ -- Vincent Legout <vlegout@debian.org>  Mon, 06 May 2013 19:55:52 +0200
+
+xboard (4.7.0-1) experimental; urgency=low
+
+  * New upstream release (Closes: #701559)
+    - Update patches
+  * debian/rules: override_dh_auto_install target not necessary anymore
+  * Use the upstream xboard.desktop file:
+    - Update debian/install
+    - Remove debian/xboard.desktop
+  * debian/control: Build-Depends on libcairo2-dev and librsvg2-dev
+
+ -- Vincent Legout <vlegout@debian.org>  Sat, 02 Mar 2013 09:16:39 +0100
+
+xboard (4.6.2-1) unstable; urgency=low
+
+  * New upstream release:
+    - Update patches
+  * Upload to unstable
+  * debian/control:
+    - Use my debian.org email address
+    - Remove the DM-Upload-Allowed field
+    - Standards-Version 3.9.3 (No changes needed)
+  * Use debhelper 9
+  * debian/rules:
+    - get-orig-source target not necessary anymore
+    - Enable hardening flags
+  * debian/NEWS.Debian: Warn that settings defined by X resources no longer
+    work, XBoard now uses ~/.xboardrc. (Closes: #646639)
+
+ -- Vincent Legout <vlegout@debian.org>  Sat, 28 Apr 2012 15:25:36 +0200
+
+xboard (4.6~git20110822-1) experimental; urgency=low
+
+  * New upstream development release:
+    - Update patches
+
+ -- Vincent Legout <vincent@legout.info>  Wed, 24 Aug 2011 18:21:47 +0200
+
+xboard (4.6~git20110618-1) experimental; urgency=low
+
+  * New upstream development release:
+    - Update patches
+  * Add DM-Upload-Allowed field
+
+ -- Vincent Legout <vincent@legout.info>  Sat, 18 Jun 2011 23:17:02 +0200
+
+xboard (4.6~git20110507-1) experimental; urgency=low
+
+  * New upstream development release (Closes: #507314)
+    - Update patches
+  * debian/rules: Add get-orig-source target
+
+ -- Vincent Legout <vincent@legout.info>  Sat, 14 May 2011 18:03:12 +0200
+
+xboard (4.5.2-1) unstable; urgency=low
+
+  * New upstream version
+    - Update patches
+  * debian/install: bitmaps files don't need to be installed manually anymore
+  * Bump to Standards-Version 3.9.2
+
+ -- Vincent Legout <vincent@legout.info>  Mon, 09 May 2011 15:51:02 +0200
+
+xboard (4.5.1-1) unstable; urgency=low
+
+  * New upstream stable version
+    - Update patches
+  * debian/rules: Remove get-orig-source-target
+  * Remove unneeded patch 02_allow_current_flex.dpatch
+  * debian/patches/*: Add dep3 headers
+  * Upload to unstable
+  * Switch to debhelper 8
+  * Remove the build dependency on quilt
+  * Update short description
+
+ -- Vincent Legout <vincent@legout.info>  Sun, 13 Mar 2011 19:54:38 +0100
+
+xboard (4.5~git20101120-1) experimental; urgency=low
+
+  [ Vincent Legout ]
+  * New upstream version (Closes: #597127)
+    - Update patches
+    - Remove 12_file_browser.patch: Merged upstream
+  * debian/rules:
+    - Update VERSION
+    - Do not run autoreconf -i and remove the override_dh_auto_clean target
+      which is no longer needed.
+    - Do not build with --with-Xaw3d anymore (Closes: #604610)
+    - Explicitly set sysconfdir to /etc/xboard/. xboard.conf is now installed
+      in /etc/xboard automatically, debian/dirs becomes useless and can be
+      removed
+  * debian/control:
+    - Remove the build dependency on automake and xaw3dg-dev
+    - Bump Standards-Version to 3.9.1
+    - Update long description, thanks to H.G.Muller
+  * debian/preinst: Fix maintainer-script-without-set-e lintian warning
+  * Remove useless arch-dep-package-has-big-usr-share lintian override
+  * debian/watch: Set version to 3
+  * debian/copyright:
+    - Update date and license of XBoard
+    - Add a copyright statement for the filebrowser
+  * debian/patches/01_note_about_missing_fonts.patch: Added
+
+  [ Clint Adams ]
+  * change my uploader address
+
+ -- Vincent Legout <vincent@legout.info>  Sun, 12 Dec 2010 19:03:24 +0100
+
+xboard (4.5~git20100118-1) experimental; urgency=low
+
+  * New upstream version:
+    - Update patches
+  * debian/docs: Add engine-intf.html
+  * debian/xboard-doc.base.engine: Register engine-intf.html with doc-base
+  * debian/xboard-doc.base.faq: Register FAQ.html with doc-base
+  * debian/rules:
+     - Install xboard.conf in /etc/xboard
+     - Run autoreconf -fi before ./configure
+     - Update clean target
+     - Add get-orig-source target
+   * debian/control:
+     - Add Build-Depends on automake
+     - Bump Standards-Version to 3.8.4
+   * 12_file_browser.patch: Added
+
+ -- Vincent Legout <vincent@legout.info>  Mon, 08 Feb 2010 11:07:23 +0800
+
+xboard (4.4.2-1) unstable; urgency=low
+
+  * New upstream version:
+    - Fix FTBFS with binutils-gold (Closes: #556691)
+    - Update patches
+  * Switch to 3.0 (quilt) source format:
+    - Remove patching/unpatching code in debian/rules
+    - Remove README.source
+
+ -- Vincent Legout <vincent@legout.info>  Sat, 12 Dec 2009 13:28:21 +0800
+
+xboard (4.4.1-1) unstable; urgency=low
+
+  * New upstream version
+    - Update patches
+  * Use fairymax as default chess engine (Closes: #541461)
+    - Drop 12_fix_chess_engine.dpatch
+    - Remove gnuchess from Depends
+    - Add fairymax in Recommends
+  * debian/docs: ToDo rename as TODO
+  * Rewrite debian/rules using dh
+    - Add debian/dirs, debian/install and debian/info
+    - Build-Depends on debhelper >= 7.0.50~
+  * Remove Build-Depends on automake and flex
+
+ -- Vincent Legout <vincent@legout.info>  Fri, 13 Nov 2009 03:11:48 +0800
+
+xboard (4.4.0-1) unstable; urgency=low
+
+  * New upstream version.
+  * Bump to Standards-Version 3.8.3.
+  * Add dependency on dpkg (>= 1.15.4) | install-info.
+  * Add README.source.
+  * Update 11_fix_manpages_warnings.dpatch.
+
+ -- Clint Adams <schizo@debian.org>  Fri, 18 Sep 2009 22:54:17 -0400
+
+xboard (4.4.0~beta1-1) unstable; urgency=low
+
+  [ Vincent Legout ]
+  * New upstream version (Closes: #534512, #539854)
+    - Drop 01_fix_spaces_NCP_in_cmail.in.dpatch, fixed upstream
+    - Drop 05_LOWTIMEWARNING.dpatch, fixed upstream
+    - Drop 06_verbose_error_message_about_recognized_options.dpatch, fixed
+      upstream
+    - Drop 09_fix_-icshost_buffer_overflow.dpatch, fixed upstream
+    - Drop 10_fix_failure_to_launch_on_8bit_display.dpatch, fixed upstream
+  * Add myself in Uploaders
+  * Remove source-contains-CVS-dir lintian override
+  * Add debian/xboard.xpm and set as icon , thanks to Nathan Handler
+    (Closes: #526709)
+  * Fix lintian warning in pxboard.man
+  * Install pxboard and cmail in /usr/games
+  * Switch to debhelper 7
+  * Use dh_prep instead of dh_clean -k
+  * Run make distclean before removing config.status in clean target
+  * Use autogen.sh instead of autoreconf -fi
+  * Add 12_fix_chess_engine.dpatch: Don't use fairymax as default engine
+    (Closes: #541181)
+  * Move gnuchess from Suggests to Depends
+
+  [ Gonéri Le Bouder ]
+  * Clean files generated by autoreconf
+  * Use dh_clean instead of $(RM) to the file clean up
+
+ -- Gonéri Le Bouder <goneri@rulezlan.org>  Thu, 13 Aug 2009 14:06:31 +0200
+
+xboard (4.4.0~alpha6-1) unstable; urgency=low
+
+  [Ansgar Burchardt]
+  * debian/control: Fix Vcs-* fields so that debcheckout works and
+    Vcs-Browser points to gitweb.
+
+  [Clint Adams]
+  * New upstream version.
+    - Update patches.
+  * Bump to Standards-Version 3.8.2.
+  * Add build dependency on texinfo.
+  * Build-depend and use automake at build time.
+
+ -- Clint Adams <schizo@debian.org>  Mon, 22 Jun 2009 19:11:34 -0400
+
+xboard (4.2.7-9) unstable; urgency=low
+
+  * Add a .desktop file, thanks Nathan Handler and Daniel Dickinson
+    (Closes: #487667, #478948)
+  * Adjust the debian/copyright to point on the correct common-license file
+  * The Debian menu file wasn't using the correct section
+  * Add myself in Uploaders:
+  * Do not ignore make distclean return anymore
+
+ -- Gonéri Le Bouder <goneri@rulezlan.org>  Thu, 12 Feb 2009 22:41:17 +0100
+
+xboard (4.2.7-8) unstable; urgency=low
+
+  * Hijack for the Debian Games Team.
+  * Make xfonts-100dpi the first font recommendation.
+  * Drop autotools-dev dependency and update config.guess and
+    config.sub.
+  * Switch from dpatch to quilt.
+  * debian/control: add Vcs-Git and Vcs-Browser fields.
+
+ -- Clint Adams <schizo@debian.org>  Sat, 07 Feb 2009 08:52:54 -0500
+
+xboard (4.2.7-7.2) unstable; urgency=low
+
+  * NMU
+  * Bump to Standards-Version 3.8.0.
+  * Move URL from pseudo-header in the long description to the real
+    Homepage field.
+  * Remove postinst (/usr/doc transition ended long ago).
+
+ -- Clint Adams <schizo@debian.org>  Sat, 17 Jan 2009 20:05:15 -0500
+
+xboard (4.2.7-7.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix FBTFS by build depending on libxaw7-dev instead of libxaw-headers
+    (Closes: #484189)
+
+ -- Moritz Muehlenhoff <jmm@debian.org>  Fri, 13 Jun 2008 01:08:36 +0200
+
+xboard (4.2.7-7) unstable; urgency=low
+
+  * Updated Standards-Version compliance to 3.7.2
+  * Fixed lintian warnings on man pages
+  * Incorporated Amaya's patch for /usr/doc to /usr/share/doc migration
+  * Postinst script changed to conform to POSIX sh.
+
+ -- Alexander L. Belikoff <alexander@belikoff.net>  Mon,  7 Aug 2006 23:02:02 -0400
+
+xboard (4.2.7-6.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Get rid of the /usr/doc link in postinst (Closes: #378649).
+  * Upgraded config.guess and config.sub
+
+ -- Amaya Rodrigo Sastre <amaya@debian.org>  Tue, 18 Jul 2006 12:46:49 +0200
+
+xboard (4.2.7-6) unstable; urgency=low
+
+  * Fixed failure to launch on 8-bit displays (Closes: #163093)
+  * Adopted the package (Closes: #360942)
+
+ -- Alexander L. Belikoff <alexander@belikoff.net>  Sat, 17 Jun 2006 23:33:24 -0400
+
+xboard (4.2.7-4) unstable; urgency=low
+
+  * Orphaning as previously announced
+  * debhelper compatibility level 5
+  * Bump Standards-Version
+  * debian/control:
+    + add Build-Depends on libxaw-headers for compiling
+    + fix indentation of Homepage
+    + drop crafty from Suggests as it is non-free and recently only available
+      on i386
+  * debian/changelog: add missing CVE identifier to previous entry
+
+ -- Florian Ernst <florian@debian.org>  Sun, 30 Apr 2006 12:51:17 +0200
+
+xboard (4.2.7-3) unstable; urgency=low
+
+  * Fix -icshost buffer overflow CVE-2004-2552 (Closes: #343560)
+  * Too many independent multi-file patches, so now moving to dpatch
+
+ -- Florian Ernst <florian@debian.org>  Fri, 16 Dec 2005 22:25:34 +0100
+
+xboard (4.2.7-2) unstable; urgency=low
+
+  * Don't popen in binary mode anymore, thus allowing cmail to work again
+    from within xboard (Closes: #327831)
+  * override lintian warning xboard source: source-contains-CVS-dir
+
+ -- Florian Ernst <florian@debian.org>  Mon, 12 Sep 2005 16:24:21 +0200
+
+xboard (4.2.7-1) unstable; urgency=low
+
+  * New maintainer (Closes: #321343)
+  * New upstream release (Closes: #259558)
+    + dropped some patches from diff.gz as they are now included upstream
+      (3.6.2 entry in changelog, set -e in configure, mktemp in pxboard,
+      strerror in xboard.c).
+    + dropped .PP from beginning of manpage (Closes: #237829), also inserted
+      date
+    + still has xterm hardcoded, now changed to x-terminal-emulator and added
+      appropriate Suggests. Thanks, Frankie Fisher! (Closes: #295115)
+  * debian/control:
+    + Standards-Version 3.6.2
+    + drop B-D on xlibs-dev as xaw3dg-dev pulls in all that is needed
+    + drop trailing full stop in short description
+    + add upstream homepage to long description
+  * debian/copright:
+    + extend information about previous and current maintainer(s)
+  * debian/menu: added menu entry for active chessboard, clarified other entry
+    (Closes: #228403)
+  * debian/rules:
+    + dropped kk13.pgn
+    + include newer config.{guess,sub}, using B-D on autotools-dev
+      (Closes: #205155, #303340)
+    + complete redo, using debhelper v4
+  * Dropped postinst, postrm, prerm and xaw-wrapper.config, they are not
+    necessary anymore / debhelper will take care; added preinst to faciliate
+    updates / removing registered alternates
+  * debian/watch: added
+  * Acknowledge NMU, thanks Sebastien Bacher! (Closes: #192196)
+
+ -- Florian Ernst <florian@debian.org>  Thu, 11 Aug 2005 13:44:56 +0200
+
+xboard (4.2.6-2.1) unstable; urgency=low
+
+  * NMU to fix a RC bug
+    + Applied patch from the BTS to fix flex error (Closes: #192196).
+
+ -- Sebastien Bacher <seb128@debian.org>  Fri,  8 Aug 2003 11:54:21 +0200
+
+xboard (4.2.6-2) unstable; urgency=medium
+
+  * Modified postinst to ignore an existing /usr/doc/$package directory.
+
+ -- Brian Mays <brian@debian.org>  Wed, 20 Mar 2002 11:25:16 -0500
+
+xboard (4.2.6-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Brian Mays <brian@debian.org>  Thu,  7 Feb 2002 06:03:43 -0500
+
+xboard (4.2.5-2) unstable; urgency=low
+
+  * Fixed symlink /usr/doc -> ../share/doc.
+  * Fixed reference to GPL.
+  * Improved stripping of binaries.
+  * Removed icon=none from menu file.
+  * Added a pxboard man page.
+  * Fixed Low-time-warning patch. (Closes: Bug#131597)
+
+ -- Brian Mays <brian@debian.org>  Wed, 30 Jan 2002 18:14:25 -0500
+
+xboard (4.2.5-1) unstable; urgency=low
+
+  * New upstream version.
+  * Fixed symlink /usr/doc -> ../share/doc.
+
+ -- Brian Mays <brian@debian.org>  Sun, 27 Jan 2002 19:57:23 -0500
+
+xboard (4.2.3-7) unstable; urgency=low
+
+  * Added "Chess" menu hint.  (Closes: Bug#121024)
+
+ -- Brian Mays <brian@debian.org>  Mon, 26 Nov 2001 11:41:06 -0500
+
+xboard (4.2.3-6) unstable; urgency=low
+
+  * Modified source to use strerr instead of sys_errlist.  (Closes:
+    Bug#112861)
+
+ -- Brian Mays <brian@debian.org>  Thu, 25 Oct 2001 15:29:34 -0400
+
+xboard (4.2.3-5) unstable; urgency=low
+
+  * Rebuilt with Xaw3D widget set.  (Closes: Bug#94568)
+  * Updated freechess.org IP address.  (Closes: Bug#103080)
+  * Fixed -[x]ncp flag to work all of the time.  (Closes: Bug#94024)
+  * Removed "-g" gcc option as per policy.
+
+ -- Brian Mays <brian@debian.org>  Mon, 16 Jul 2001 20:37:32 -0400
+
+xboard (4.2.3-4) unstable; urgency=low
+
+  * Added "libxaw-dev" to Build-Depends.  (damn damn Branden
+    Robinson!) (Closes: Bug#92958)
+
+ -- Brian Mays <brian@debian.org>  Thu,  5 Apr 2001 10:13:57 -0400
+
+xboard (4.2.3-3) unstable; urgency=low
+
+  * Modified Build-Depends to use the new X package names.  (damn Branden
+    Robinson) (Closes: Bug#92688)
+
+ -- Brian Mays <brian@debian.org>  Wed,  4 Apr 2001 06:14:57 -0400
+
+xboard (4.2.3-2) unstable; urgency=low
+
+  * Applied patch from Matt Zimmerman <mdz@debian.org> to provide a
+     visual low time warning.  (Closes: Bug#88856)
+
+ -- Brian Mays <brian@debian.org>  Sun, 25 Mar 2001 09:18:38 -0500
+
+xboard (4.2.3-1) unstable; urgency=low
+
+  * New upstream version.
+  * Added additional ICS menu entries.  (Closes: Bug#87874)
+
+ -- Brian Mays <brian@debian.org>  Thu,  1 Mar 2001 11:39:44 -0500
+
+xboard (4.2.2-1) unstable; urgency=low
+
+  * New upstream version.
+  * Added menu entry for ICS mode.  (Closes: Bug#83798)
+
+ -- Brian Mays <brian@debian.org>  Fri,  9 Feb 2001 07:06:59 -0500
+
+xboard (4.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Removed menu entry for "X Gnuchess".  (Closes: Bug#72032)
+  * Changed control file to suggest "phalanx".
+
+ -- Brian Mays <brian@debian.org>  Mon, 25 Sep 2000 11:17:52 -0400
+
+xboard (4.0.7-3) unstable; urgency=low
+
+  * Added a patch from Milan Zamazal <pdm@seznam.cz> to add a list of
+    options to the command line error message.
+
+ -- Brian Mays <brian@debian.org>  Fri,  9 Jun 2000 16:18:44 -0400
+
+xboard (4.0.7-2) unstable; urgency=low
+
+  * Fixed build dependencies.  (Closes: Bug#59976)
+
+ -- Brian Mays <brian@debian.org>  Thu,  9 Mar 2000 08:41:23 -0500
+
+xboard (4.0.7-1) unstable; urgency=low
+
+  * New upstream release (bugfix release).
+
+ -- Brian Mays <brian@debian.org>  Mon,  6 Mar 2000 05:46:24 -0500
+
+xboard (4.0.5-3) frozen unstable; urgency=low
+
+  * Added build-time dependencies.
+
+ -- Brian Mays <brian@debian.org>  Mon, 17 Jan 2000 14:17:00 -0500
+
+xboard (4.0.5-2) unstable; urgency=low
+
+  * Fixed Y2K bug in cmail causing it to return 19100 for the year 2000
+    in the "Date" field of PGN files.  (Closes: Bug#54268)
+
+ -- Brian Mays <brian@debian.org>  Fri,  7 Jan 2000 08:12:03 -0500
+
+xboard (4.0.5-1) unstable; urgency=low
+
+  * New upstream version.
+  * Fixed cmail to work with games whose names contain spaces.
+    (Closes: Bug#51203)
+
+ -- Brian Mays <brian@debian.org>  Sun, 12 Dec 1999 16:26:18 -0500
+
+xboard (4.0.3-2) unstable; urgency=low
+
+  * Fixed FHS /usr/doc -> /usr/share/doc transition scheme.
+
+ -- Brian Mays <brian@debian.org>  Fri,  1 Oct 1999 14:32:12 -0400
+
+xboard (4.0.3-1) unstable; urgency=low
+
+  * New upstream version.
+  * Fixed FHS support.
+
+ -- Brian Mays <brian@debian.org>  Thu, 16 Sep 1999 21:29:28 -0400
+
+xboard (4.0.2-3) unstable; urgency=low
+
+  * Added suggestions for gnuchess and crafty.  (Closes: Bug#41727)
+  * Fixed alternatives used for xaw-wrapper support.  (Closes: Bug#42150)
+
+ -- Brian Mays <brian@debian.org>  Thu, 29 Jul 1999 16:19:36 -0400
+
+xboard (4.0.2-2) unstable; urgency=low
+
+  * Added xaw-wrapper support.  (Closes: Bug#38001)
+  * Added the xchess bitmaps to the package.
+  * Modified build procedure to remove parser.c so that it can be
+    generated by lex.  The parser.c that comes with the upstream source
+    incorrectly uses stdin/stdout.
+  * Moved the doc, info, and man directories to /usr/share as per
+    the FHS.
+
+ -- Brian Mays <brian@debian.org>  Mon, 19 Jul 1999 12:47:23 -0400
+
+xboard (4.0.2-1) unstable; urgency=low
+
+  * New upstream version.
+  * Added zippy features to xboard.
+
+ -- Brian Mays <brian@debian.org>  Thu,  4 Mar 1999 11:54:26 -0500
+
+xboard (4.0.0-3) unstable; urgency=low
+
+  * Now recommends the new xfonts-75dpi and xfonts-100dpi packages.
+    (Fixes: Bug#28712)
+
+ -- Brian Mays <brian@debian.org>  Thu, 29 Oct 1998 18:06:13 -0500
+
+xboard (4.0.0-2) unstable; urgency=low
+
+  * Regenerated parse.c with lex so that it will compile with glibc-2.1.
+
+ -- Brian Mays <brian@debian.org>  Tue,  1 Sep 1998 10:45:38 -0400
+
+xboard (4.0.0-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Brian Mays <brian@debian.org>  Thu, 25 Jun 1998 10:14:32 -0400
+
+xboard (3.6.2-4) frozen unstable; urgency=low
+
+  * Fixed pxboard to securely use a temporary file.  Fixes Bug#19814.
+
+ -- Brian Mays <brian@debian.org>  Wed, 18 Mar 1998 19:08:09 -0500
+
+xboard (3.6.2-3) unstable; urgency=low
+
+  * Removed old FSF address from copyright file.
+
+ -- Brian Mays <brian@debian.org>  Thu, 12 Feb 1998 17:55:16 -0500
+
+xboard (3.6.2-2) unstable; urgency=low
+
+  * Changed menu entry to XBoard (stand alone mode) and X Gnuchess
+    (run gnuchess in xboard).
+
+ -- Brian Mays <brian@debian.org>  Tue,  6 Jan 1998 10:15:27 -0400
+
+xboard (3.6.2-1) unstable; urgency=low
+
+  * New upstream version.
+  * Libc6/xlib6g release.
+
+ -- Brian Mays <brian@debian.org>  Sun, 19 Oct 1997 14:13:41 -0400
+
+xboard (3.6.1-1) unstable; urgency=low
+
+  * New upstream version.
+  * Added FAQ to /usr/doc/xboard.
+  * Fixed the entry for the menu package.
+
+ -- Brian Mays <brian@debian.org>  Wed, 28 May 1997 16:44:49 -0400
+
+xboard (3.5.0-2) unstable; urgency=low
+
+  * Added Debian menu support.
+
+ -- Brian Mays <brian@debian.org>  Sat, 19 Apr 1997 19:24:48 -0400
+
+xboard (3.5.0-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Brian Mays <brian@debian.org>  Wed, 15 Jan 1997 18:03:35 -0500
+
+xboard (3.4.pl1-4) frozen unstable; urgency=low
+
+  * Removed dependency on X11R6.
+
+ -- Brian Mays <brian@debian.org>  Mon, 18 Nov 1996 13:46:08 -0500
+
+xboard (3.4.pl1-3) unstable; urgency=low
+
+  * First release with the new source format.
+
+ -- Brian Mays <brian@debian.org>  Fri, 23 Aug 1996 23:26:16 -0400

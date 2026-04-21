@@ -1,0 +1,13 @@
+Description: Do not require gettext 0.17. Fix FTBFS with gettext 0.18.
+Author: Vincent Legout <vincent@legout.info>
+
+--- a/configure.ac
++++ b/configure.ac
+@@ -79,7 +79,6 @@
+ AC_PROG_INSTALL
+ 
+ dnl| add gettext support
+-AM_GNU_GETTEXT_VERSION(0.17)
+ AM_GNU_GETTEXT([external])
+ 
+ AC_CHECK_PROGS(RSH, remsh rsh, rsh)

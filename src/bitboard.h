@@ -40,6 +40,8 @@ std::string pretty(Bitboard b);
 
 } // namespace Stockfish::Bitboards
 
+Bitboard flanger_attacks_bb(Color c, Square s, Bitboard occupied, Bitboard board);
+
 #ifdef LARGEBOARDS
 constexpr Bitboard AllSquares = ((~Bitboard(0)) >> 8);
 #else

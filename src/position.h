@@ -197,6 +197,8 @@ public:
   Bitboard promoted_soldiers(Color c) const;
   bool makpong() const;
   EnclosingRule flip_enclosed_pieces() const;
+  bool piece_freezing() const;
+  Square frozen_piece_square() const;
   // winning conditions
   int n_move_rule() const;
   int n_fold_rule() const;
@@ -913,6 +915,23 @@ inline EnclosingRule Position::flip_enclosed_pieces() const {
   return var->flipEnclosedPieces;
 }
 
+inline bool Position::piece_freezing() const {
+  assert(var != nullptr);
+  return var->pieceFreezing;
+}
+
+inline Square Position::frozen_piece_square() const {
+  assert(var != nullptr);
+  if (!var->pieceFreezing || !st->previous)
+      return SQ_NONE;
+  Square to = to_sq(st->previous->move);
+  if (!(pieces(side_to_move()) & to))
+      return SQ_NONE;
+  if (var->pieceFreezingImmune & type_of(piece_on(to)))
+      return SQ_NONE;
+  return to;
+}
+
 inline Value Position::stalemate_value(int ply) const {
   assert(var != nullptr);
   // Check for checkmate of pseudo-royal pieces
@@ -1291,6 +1310,8 @@ inline Bitboard Position::attacks_from(Color c, PieceType pt, Square s) const {
       return attacks_bb(c, pt, s, byTypeBB[ALL_PIECES]) & board_bb();
 
   PieceType movePt = pt == KING ? king_type() : pt;
+  if (movePt == FLANGER)
+      return flanger_attacks_bb(c, s, byTypeBB[ALL_PIECES], board_bb()) & board_bb(c, pt);
   Bitboard b = attacks_bb(c, movePt, s, byTypeBB[ALL_PIECES]);
   // Xiangqi soldier
   if (pt == SOLDIER && !(promoted_soldiers(c) & s))
@@ -1321,6 +1342,8 @@ inline Bitboard Position::moves_from(Color c, PieceType pt, Square s) const {
       return moves_bb(c, pt, s, byTypeBB[ALL_PIECES]) & board_bb();
 
   PieceType movePt = pt == KING ? king_type() : pt;
+  if (movePt == FLANGER)
+      return flanger_attacks_bb(c, s, byTypeBB[ALL_PIECES], board_bb()) & board_bb();
   Bitboard b = moves_bb(c, movePt, s, byTypeBB[ALL_PIECES]);
   // Add initial moves
   if (double_step_region(c) & s)

@@ -1,0 +1,34 @@
+Source: xboard
+Section: games
+Priority: optional
+Maintainer: Debian Games Team <pkg-games-devel@lists.alioth.debian.org>
+Uploaders: Barry deFreese <bdefreese@debian.org>,
+           Gonéri Le Bouder <goneri@rulezlan.org>,
+           Vincent Legout <vlegout@debian.org>
+Build-Depends: autopoint,
+               debhelper-compat (= 13),
+               libcairo2-dev,
+               librsvg2-dev,
+               libxaw7-dev,
+               texinfo,
+               libgtk2.0-dev
+Standards-Version: 4.5.0
+Homepage: https://savannah.gnu.org/projects/xboard/
+Vcs-Git: https://salsa.debian.org/games-team/xboard.git
+Vcs-Browser: https://salsa.debian.org/games-team/xboard
+
+Package: xboard
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: fairymax, alsa-utils, xfonts-100dpi | xfonts-75dpi
+Suggests: x-terminal-emulator
+Description: X Window System Chess Board
+ XBoard is a graphical chessboard that can serve as a user interface
+ for chess programs, for the Internet Chess Server, or for electronic
+ mail correspondence chess. It supports all major forms of chess,
+ such as international chess, xiangqi and shogi. XBoard can also be
+ used by itself as viewer for stored chess games.
+ .
+ XBoard uses the Helvetica font (located in the xfonts-75dpi and
+ xfonts-100dpi packages) by default.  However, other fonts can be
+ specified via a command line option or an X resource.

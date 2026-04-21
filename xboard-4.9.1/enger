@@ -1,0 +1,3 @@
+#!/bin/bash
+exec 2>/tmp/fairy-stderr.log
+tee /tmp/fairy-stdin.log | /home/am/scratch/Fairy-Stockfish/src/stockfish | tee /tmp/fairy-stdout.log

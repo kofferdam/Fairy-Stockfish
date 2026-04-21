@@ -1,0 +1,27 @@
+Description: Print an error message when fonts are missing
+Author: Vincent Legout <vincent@legout.info>
+Bug-Debian: http://bugs.debian.org/504077
+Bug-Debian: http://bugs.debian.org/562726
+
+--- a/gtk/xboard.c
++++ b/gtk/xboard.c
+@@ -1458,6 +1458,8 @@
+     if (nfonts < 1) {
+ 	fprintf(stderr, _("%s: no fonts match pattern %s\n"),
+ 		programName, pattern);
++	fprintf(stderr, "Some fonts seem to be missing in your system, you should install either xfonts-100dpi or xfonts-75dpi and then restart Xorg to get xboard running.\n");
++	fprintf(stderr, "See http://bugs.debian.org/504077 and http://bugs.debian.org/562726 for more information.\n");
+ 	exit(2);
+     }
+ 
+--- a/xaw/xboard.c
++++ b/xaw/xboard.c
+@@ -1514,6 +1514,8 @@
+     if (nfonts < 1) {
+ 	fprintf(stderr, _("%s: no fonts match pattern %s\n"),
+ 		programName, pattern);
++	fprintf(stderr, "Some fonts seem to be missing in your system, you should install either xfonts-100dpi or xfonts-75dpi and then restart Xorg to get xboard running.\n");
++	fprintf(stderr, "See http://bugs.debian.org/504077 and http://bugs.debian.org/562726 for more information.\n");
+ 	exit(2);
+     }
+ 

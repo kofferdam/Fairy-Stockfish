@@ -1,0 +1,100 @@
+locale = en_AU.UTF-8
+recognized 'flang' (-1) as variant flang
+recognized 'flang' (-1) as variant flang
+recognized 'flang' (-1) as variant flang
+shuffleOpenings = 0
+shuffleOpenings = 0
+Version: xboard 4.9.1 + stockfish (1b0c9dfe-dirty)
+Reset(1, 0) from gameMode 0
+recognized 'flang' (-1) as variant flang
+GameEnds(0, (null), 2)
+shuffleOpenings = 0
+StartChildProcess (dir="/home/am/scratch/Fairy-Stockfish/src") /home/am/scratch/Fairy-Stockfish/src/stockfish
+91 >first : xboard
+protover 2
+97 <first : Fairy-Stockfish 180326 by Fabian Fichter
+186 <first : feature setboard=1 usermove=1 time=1 memory=1 smp=1 colors=0 draw=0 highlight=1 name=0 sigint=0 ping=1 myname="Fairy-Stockfish 180326" variants="chess,3check,5check,ai-wok,almost,amazon,antichess,armageddon,asean,ataxx,atomar,atomic,berolina,breakthrough,bughouse,cambodian,chaturanga,chessgi,chigorin,clobber,codrus,coregal,crazyhouse,dobutsu,dragon,euroshogi,extinction,fairy,fischerandom,flang,flipello,flipersi,fox-and-hounds,gardner,giveaway,gorogoro,grasshopper,hoppelpoppel,horde,isolation,isolation7x7,joust,judkins,karouk,kinglet,kingofthehill,knightmate,koedem,kyotoshogi,legan,loop,losalamos,losers,makpong,makruk,micro,mini,minishogi,minixiangqi,misere,newzealand,nightrider,nocastle,nocheckatomic,normal,paradigm,pawnback,pawnsideways,perfect,petrified,placement,pocketknight,raazuvaa,racingkings,seirawan,shatar,shatranj,shouse,sittuyin,snailtrail,sortofalmost,spartan,suicide,threekings,torishogi,torpedo"
+186 >first : accepted setboard
+186 >first : accepted usermove
+186 >first : accepted time
+186 >first : accepted memory
+186 >first : accepted smp
+186 >first : accepted colors
+186 >first : accepted draw
+186 >first : accepted highlight
+186 >first : accepted name
+186 >first : accepted sigint
+186 >first : accepted ping
+186 >first : accepted myname
+187 >first : accepted variants
+187 <first : feature option="Debug Log File -string "
+187 >first : accepted option
+187 <first : feature option="Clear Hash -button"
+187 >first : accepted option
+187 <first : feature option="Ponder -check 0"
+187 >first : accepted option
+187 <first : feature option="MultiPV -spin 1 1 500"
+187 >first : accepted option
+187 <first : feature option="Skill Level -spin 20 -20 20"
+187 >first : accepted option
+187 <first : feature option="Move Overhead -spin 10 0 5000"
+187 >first : accepted option
+187 <first : feature option="Slow Mover -spin 100 10 1000"
+187 >first : accepted option
+187 <first : feature option="nodestime -spin 0 0 10000"
+187 >first : accepted option
+187 <first : feature option="UCI_Chess960 -check 0"
+187 >first : accepted option
+187 <first : feature option="UCI_AnalyseMode -check 0"
+187 >first : accepted option
+187 <first : feature option="UCI_LimitStrength -check 0"
+187 >first : accepted option
+187 <first : feature option="UCI_Elo -spin 1350 500 2850"
+187 >first : accepted option
+187 <first : feature option="UCI_ShowWDL -check 0"
+187 >first : accepted option
+187 <first : feature option="SyzygyPath -string <empty>"
+187 >first : accepted option
+187 <first : feature option="SyzygyProbeDepth -spin 1 1 100"
+187 >first : accepted option
+187 <first : feature option="Syzygy50MoveRule -check 1"
+187 >first : accepted option
+187 <first : feature option="SyzygyProbeLimit -spin 7 0 7"
+187 >first : accepted option
+187 <first : feature option="Use NNUE -check 1"
+187 >first : accepted option
+187 <first : feature option="EvalFile -string <empty>"
+187 >first : accepted option
+187 <first : feature option="TsumeMode -check 0"
+187 >first : accepted option
+187 <first : feature option="VariantPath -string <empty>"
+187 >first : accepted option
+187 <first : feature option="usemillisec -check 1"
+187 >first : accepted option
+187 <first : feature done=1
+187 >first : accepted done
+188 >first : memory 68
+188 >first : cores 1
+188 >first : new
+random
+188 >first : variant flang
+188 >first : level 40 0:03 0
+188 >first : post
+188 >first : hard
+188 >first : ping 1
+Impossible move , type = 0
+229 <first : Error (unknown command): random
+231 <first : setup (PN.R.............F...........AKpn.r.............f...........ak) 8x8+0_flang kafnrp2/pppppp2/8/8/8/8/2PPPPPP/2PRNFAK w - - 0 1
+231 <first : piece N& N
+231 <first : piece R& R
+231 <first : piece A& QN
+231 <first : piece F& 
+231 <first : piece P& mfWcfWmfFcfF
+231 <first : piece K& K
+231 <first : Error (unknown command): post
+231 <first : pong 1
+GameEnds(29, xboard exit, 2)
+18245 >first : result * {xboard exit}
+18245 >first : force
+18245 >first : ping 2
+18245 >first : quit

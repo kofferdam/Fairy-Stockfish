@@ -1059,8 +1059,11 @@ bool Position::legal(Move m) const {
   assert(!count<KING>(us) || piece_on(square<KING>(us)) == make_piece(us, KING));
   assert(board_bb() & to);
 
-  // Illegal checks
-  if ((!checking_permitted() || (sittuyin_promotion() && type_of(m) == PROMOTION) || (!drop_checks() && type_of(m) == DROP)) && gives_check(m))
+  if (piece_freezing() && from == frozen_piece_square())
+      return false;
+
+  // Illegal checks (when checking is permitted, disallow moves that give check in special cases)
+  if (checking_permitted() && ((sittuyin_promotion() && type_of(m) == PROMOTION) || (!drop_checks() && type_of(m) == DROP)) && gives_check(m))
       return false;
 
   // Illegal quiet moves

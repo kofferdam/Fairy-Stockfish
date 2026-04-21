@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		--enable-zippy  \
+		--bindir='$${exec_prefix}/games' \
+		--sysconfdir='/etc/xboard' \
+		--with-gtk
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -rf debian/xboard/usr/share/games/xboard/themes/conf/chu
+	rm -rf debian/xboard/usr/share/games/xboard/themes/conf/sho

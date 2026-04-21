@@ -1,0 +1,31 @@
+.TH PXBOARD 6
+.PD
+.ad b
+.SH NAME
+pxboard \- a script to pipe games into xboard
+.SH SYNOPSIS
+\fBcat game | pxboard\fR
+[\|\fBxboard-options\fR\|]
+.SH DESCRIPTION
+.PP
+\fIPxboard\fP saves its standard input to a temporary file and invokes
+\(lq\fBxboard \-loadGameFile file &\fP\(rq on the file.  Although it is
+possible to pipe games directly into \fIxboard\fP using \(lq\fBxboard
+\-lgf -\fP\(rq, this script is nicer in two ways: (1) \fIxboard\fP can
+seek on the temporary file, so the popup game list, \fILoad Previous
+Game\fP, and \fIReload Same Game\fP all work.  (2) The script runs
+\fIxboard\fP in the background and exits.  So if you save a news
+article by piping it into this script, you immediately get back
+control of your news reader.
+.PP
+The script turns on
+.B -noChessProgram
+mode by default.  If you want a chess program started, give the
+.B -xncp
+option.
+.SH "SEE ALSO"
+.PP
+.BR xboard (6),
+.BR cmail (6).
+.SH BUGS
+No known bugs.

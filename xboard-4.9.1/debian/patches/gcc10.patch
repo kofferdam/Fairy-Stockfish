@@ -1,0 +1,26 @@
+Author: Reiner Herrmann <reiner@reiner-h.de>
+Description: Fix FTBFS with GCC 10
+Bug-Debian: https://bugs.debian.org/957972
+
+--- a/backend.h
++++ b/backend.h
+@@ -242,7 +242,7 @@
+ 
+ /* ICS vars used with backend.c and zippy.c */
+ enum ICS_TYPE { ICS_GENERIC, ICS_ICC, ICS_FICS, ICS_CHESSNET /* not really supported */ };
+-enum ICS_TYPE ics_type;
++extern enum ICS_TYPE ics_type;
+ 
+ /* pgntags.c prototypes
+  */
+--- a/evalgraph.h
++++ b/evalgraph.h
+@@ -34,7 +34,7 @@
+ #define OPEN   0
+ 
+ /* Module globals */
+-ChessProgramStats_Move * currPvInfo;
++extern ChessProgramStats_Move * currPvInfo;
+ extern int currFirst;
+ extern int currLast;
+ extern int currCurrent;

@@ -1280,6 +1280,58 @@ namespace {
         }
     }
 
+    // Commoner safety and advancement for variants using COMMONER as an extinction piece
+    if (   pos.count<COMMONER>(Us) == 1
+        && pos.extinction_value() != VALUE_NONE
+        && (pos.extinction_piece_types() & piece_set(COMMONER)))
+    {
+        Square ksq = pos.square<COMMONER>(Us);
+        Bitboard kingZone = attacks_bb<KING>(ksq) | square_bb(ksq);
+
+        // --- Safety: penalize attacked commoner zone ---
+        int attackUnits = 0;
+
+        for (PieceType pt : {KNIGHT, ROOK, AMAZON, FLANGER})
+        {
+            int cnt = popcount(attackedBy[Them][pt] & kingZone);
+            if (cnt)
+                attackUnits += cnt * (pt == AMAZON ? 4 : pt == ROOK ? 3 : 2);
+        }
+        Bitboard pawnAttacks = attackedBy[Them][pos.main_promotion_pawn_type(Them)] & kingZone;
+        attackUnits += popcount(pawnAttacks);
+
+        int safetyPenalty = attackUnits * attackUnits;
+        score -= make_score(safetyPenalty, safetyPenalty * 2 / 3);
+
+        Bitboard safeMoves = attacks_bb<KING>(ksq) & ~pos.pieces(Us)
+                           & ~attackedBy[Them][ALL_PIECES] & pos.board_bb();
+        int escapeSquares = popcount(safeMoves);
+        if (escapeSquares <= 1)
+            score -= make_score(80, 60);
+        else if (escapeSquares <= 2)
+            score -= make_score(30, 20);
+
+        Bitboard defenders = attackedBy[Us][ALL_PIECES] & kingZone & ~attackedBy[Them][ALL_PIECES];
+        score += make_score(12, 8) * popcount(defenders);
+
+        // --- Back-rank advancement bonus (Racing Kings style) ---
+        if (pos.flag_region(Us))
+        {
+            Rank advanceRank = relative_rank(Us, rank_of(ksq), pos.max_rank());
+            int advance = int(advanceRank);
+            score += make_score(advance * advance * 5, advance * advance * 8);
+
+            if (pos.count<COMMONER>(Them) == 1)
+            {
+                Square theirKsq = pos.square<COMMONER>(Them);
+                Rank theirAdvance = relative_rank(Them, rank_of(theirKsq), pos.max_rank());
+                int lead = int(advanceRank) - int(theirAdvance);
+                if (lead > 0)
+                    score += make_score(lead * 40, lead * 60);
+            }
+        }
+    }
+
     // Connect-n
     if (pos.connect_n() > 0)
     {

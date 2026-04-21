@@ -1,0 +1,5 @@
+07_call_x-terminal-emulator_instead_of_xterm.dpatch
+11_fix_manpages_warnings.dpatch
+01_note_about_missing_fonts.patch
+02_gettext.patch
+gcc10.patch

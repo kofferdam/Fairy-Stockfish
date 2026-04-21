@@ -118,6 +118,8 @@ struct Variant {
   Rank soldierPromotionRank = RANK_1;
   EnclosingRule flipEnclosedPieces = NO_ENCLOSING;
   bool freeDrops = false;
+  bool pieceFreezing = false;
+  PieceSet pieceFreezingImmune = piece_set(KING);
 
   // game end
   PieceSet nMoveRuleTypes[COLOR_NB] = {piece_set(PAWN), piece_set(PAWN)};

@@ -1,0 +1,62 @@
+Description: Call x-terminal-emulator instead of xterm
+Author: Florian Ernst <florian@debian.org>
+
+@DPATCH@
+--- a/xaw/xboard.c
++++ b/xaw/xboard.c
+@@ -2118,7 +2118,7 @@
+       name = prms[0];
+     else
+       name = "xboard";
+-    snprintf(buf, sizeof(buf), "xterm -e man %s &", name);
++    snprintf(buf, sizeof(buf), "x-terminal-emulator -e man %s &", name);
+     system(buf);
+ }
+ 
+@@ -2132,7 +2132,7 @@
+ InfoProc ()
+ {
+     char buf[MSG_SIZ];
+-    snprintf(buf, sizeof(buf), "xterm -e info --directory %s --directory . -f %s &",
++    snprintf(buf, sizeof(buf), "x-terminal-emulator -e info --directory %s --directory . -f %s &",
+              INFODIR, INFOFILE);
+     system(buf);
+ }
+@@ -2183,7 +2183,7 @@
+       XSetErrorHandler(oldHandler);
+     }
+     if (oldICSInteractionTitle == NULL) {
+-      oldICSInteractionTitle = "xterm";
++      oldICSInteractionTitle = "x-terminal-emulator";
+     }
+   }
+   printf("\033]0;%s\007", message);
+--- a/gtk/xboard.c
++++ b/gtk/xboard.c
+@@ -2033,7 +2033,7 @@
+     snprintf(buf, MSG_SIZ, "osascript -e 'tell application \"Terminal\"' -e 'activate' -e 'do script \"man %s/../man/man6/xboard.6\"' -e 'end tell'", dataDir);
+     system(buf);
+ #else
+-    system("xterm -e man xboard &");
++    system("x-terminal-emulator -e man xboard &");
+ #endif
+ }
+ 
+@@ -2044,7 +2044,7 @@
+ #ifdef OSXAPP
+     snprintf(buf, MSG_SIZ, "osascript -e 'tell application \"Terminal\"' -e 'activate' -e 'do script \"info -d %s/../info -f xboard.info\"' -e 'end tell'", dataDir);
+ #else
+-        snprintf(buf, sizeof(buf), "xterm -e info --directory %s --directory . -f %s &",
++        snprintf(buf, sizeof(buf), "x-terminal-emulator -e info --directory %s --directory . -f %s &",
+                  INFODIR, INFOFILE);
+ #endif
+     system(buf);
+@@ -2098,7 +2098,7 @@
+       XSetErrorHandler(oldHandler);
+     }
+     if (oldICSInteractionTitle == NULL) {
+-      oldICSInteractionTitle = "xterm";
++      oldICSInteractionTitle = "x-terminal-emulator";
+     }
+   }
+   printf("\033]0;%s\007", message);

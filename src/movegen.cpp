@@ -296,6 +296,8 @@ namespace {
     while (bb)
     {
         Square from = pop_lsb(bb);
+        if (pos.piece_freezing() && from == pos.frozen_piece_square())
+            continue;
 
         Bitboard attacks = pos.attacks_from(Us, Pt, from);
         Bitboard quiets = pos.moves_from(Us, Pt, from);

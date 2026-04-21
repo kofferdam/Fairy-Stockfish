@@ -227,6 +227,38 @@ std::string Bitboards::pretty(Bitboard b) {
   return s;
 }
 
+/// Flanger zig-zag attacks: slides in one of 8 directions, alternating perpendicular step each square.
+/// Horizontal zig-zag: main axis file, rank alternates; vertical zig-zag: main axis rank, file alternates.
+Bitboard flanger_attacks_bb(Color /*c*/, Square s, Bitboard occupied, Bitboard board) {
+  Bitboard result = 0;
+  constexpr std::pair<Direction, Direction> zigzag[8] = {
+      {NORTH_EAST, SOUTH_EAST},  // horizontal right-up
+      {SOUTH_EAST, NORTH_EAST},  // horizontal right-down
+      {NORTH_WEST, SOUTH_WEST},  // horizontal left-up
+      {SOUTH_WEST, NORTH_WEST},  // horizontal left-down
+      {NORTH_EAST, NORTH_WEST},  // vertical up-right
+      {NORTH_WEST, NORTH_EAST},  // vertical up-left
+      {SOUTH_EAST, SOUTH_WEST},  // vertical down-right
+      {SOUTH_WEST, SOUTH_EAST}   // vertical down-left
+  };
+  for (const auto& [d1, d2] : zigzag) {
+      Square sq = s;
+      for (int step = 0; ; ++step) {
+          Square prev = sq;
+          sq = Square(int(sq) + (step % 2 == 0 ? int(d1) : int(d2)));
+          if (   !is_ok(sq)
+              || !(board & square_bb(sq))
+              || std::abs(file_of(prev) - file_of(sq)) > 1
+              || std::abs(rank_of(prev) - rank_of(sq)) > 1)
+              break;
+          result |= square_bb(sq);
+          if (occupied & square_bb(sq))
+              break;
+      }
+  }
+  return result;
+}
+
 /// Bitboards::init_pieces() initializes piece move/attack bitboards and rider types
 
 void Bitboards::init_pieces() {
@@ -234,6 +266,16 @@ void Bitboards::init_pieces() {
   for (PieceType pt = PAWN; pt <= KING; ++pt)
   {
       const PieceInfo* pi = pieceMap.find(pt)->second;
+
+      // Flanger: zig-zag movement implemented in flanger_attacks_bb(); no rider types
+      if (pt == FLANGER) {
+          for (Color c : { WHITE, BLACK })
+              for (Square s = SQ_A1; s <= SQ_MAX; ++s) {
+                  PseudoAttacks[c][pt][s] = AllSquares;
+                  PseudoMoves[0][c][pt][s] = AllSquares;
+              }
+          continue;
+      }
 
       // Detect rider types
       for (auto modality : {MODALITY_QUIET, MODALITY_CAPTURE})
