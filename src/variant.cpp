@@ -385,8 +385,11 @@ namespace {
         v->nMoveRuleTypes[WHITE] = v->nMoveRuleTypes[BLACK] = piece_set(CUSTOM_PIECE_1);
         v->pieceValue[MG][COMMONER] = 1400;
         v->pieceValue[EG][COMMONER] = 1800;
-        v->pieceValue[MG][FLANGER] = 1000;
-        v->pieceValue[EG][FLANGER] = 1100;
+        // Amazon / flanger: tied to canonical RookValue* / KnightValue* in types.h so scales stay consistent.
+        v->pieceValue[MG][AMAZON]  = 3 * RookValueMg;
+        v->pieceValue[EG][AMAZON]  = 3 * RookValueEg;
+        v->pieceValue[MG][FLANGER] = (RookValueMg + KnightValueMg) / 2;
+        v->pieceValue[EG][FLANGER] = (RookValueEg + KnightValueEg) / 2;
         v->variantTemplate = "flang";
         v->pieceToCharTable = "PN.R.............F...........AKpn.r.............f...........ak";
         return v;

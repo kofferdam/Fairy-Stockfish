@@ -29,6 +29,7 @@
 
 #include "bitboard.h"
 #include "evaluate.h"
+#include "flang_eval.h"
 #include "material.h"
 #include "misc.h"
 #include "pawns.h"
@@ -1660,6 +1661,33 @@ make_v:
 Value Eval::evaluate(const Position& pos) {
 
   Value v;
+
+  // Flang: handcrafted static eval by default; NNUE only when loaded net matches this variant.
+  if (pos.variant() && pos.variant()->variantTemplate == "flang")
+  {
+      if (Eval::useNNUE && pos.nnue_applicable())
+      {
+          const PieceType pawnPt  = pos.main_promotion_pawn_type(WHITE);
+          const int       pawnCnt = pos.count(WHITE, pawnPt) + pos.count(BLACK, pawnPt);
+          const int scale         = 903 + 32 * pawnCnt + 32 * int(pos.non_pawn_material()) / 1024;
+          v                       = NNUE::evaluate(pos, true) * scale / 1024;
+      }
+      else
+          v = evaluate_flang(pos);
+
+      if (pos.n_move_rule())
+      {
+          v = v * (2 * pos.n_move_rule() - pos.rule50_count())
+              / (2 * pos.n_move_rule());
+          if (pos.material_counting())
+              v += pos.material_counting_result()
+                 / (10 * std::max(2 * pos.n_move_rule() - pos.rule50_count(), 1));
+      }
+      if (pos.two_boards() && std::abs(v) >= VALUE_VIRTUAL_MATE_IN_MAX_PLY)
+          v += v > VALUE_ZERO ? MAX_PLY + 1 : -MAX_PLY - 1;
+      v = std::clamp(v, VALUE_TB_LOSS_IN_MAX_PLY + 1, VALUE_TB_WIN_IN_MAX_PLY - 1);
+      return v;
+  }
 
   if (!Eval::useNNUE || !pos.nnue_applicable())
       v = Evaluation<NO_TRACE>(pos).value();
